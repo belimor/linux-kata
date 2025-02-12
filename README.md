@@ -1,2 +1,3 @@
-# linux.kata
-daily linux exercises
+# linux-kata
+
+Bash script to run linux exercises
