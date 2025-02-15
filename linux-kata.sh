@@ -1,43 +1,120 @@
 #!/usr/bin/bash
 
-# File containing the list of strings
-STRINGS_FILE="commands.txt"
+# Function to show help message
+show_help() {
+    echo "Usage: $0 [OPTIONS]"
+    echo ""
+    echo "Options:"
+    echo "  -h, help          Show this help message."
+    echo "  enable            Enable a feature."
+    echo "  disable           Disable a feature."
+    echo "  list              List available items."
+    echo "  change <file>     Change to the specified file (default: $DEFAULT_FILE)."
+    echo "  (no arguments)    Run the script as usual."
+    exit 0
+}
 
-# File to store the index of the last used string
-LAST_INDEX_FILE="last_index.txt"
+# Function to enable a feature
+enable_feature() {
+    echo "Linux-kata enabled"
+    source enable.sh
+}
 
-# Ensure the strings file exists
-if [[ ! -f $STRINGS_FILE ]]; then
-    echo "Error: $STRINGS_FILE not found. Please create the file with one string per line."
+# Function to disable a feature
+disable_feature() {
+    echo "Linux-kata disabled"
+    source disable.sh
+}
+
+case "$1" in
+    -h|help)
+        show_help
+        ;;
+    enable)
+        enable_feature
+        ;;
+    disable)
+        disable_feature
+        ;;
+    list)
+        list_items
+        ;;
+    change)
+        if [[ -z "$2" ]]; then
+            echo "Error: Missing file name for 'change' command."
+            exit 1
+        fi
+        change_file "$2"
+        ;;
+    "")
+        echo "Running script as usual..."
+        # Place your usual script logic here
+        ;;
+    *)
+        echo "Error: Unknown command '$1'"
+        echo "Use '$0 -h' or '$0 help' for usage information."
+        exit 1
+        ;;
+esac
+
+# File containing the list of blocks
+COMMANDS_FILE="commands.txt"
+
+# File to store the index of the last used block
+LAST_INDEX_FILE="index.txt"
+
+# Ensure the commands file exists
+if [[ ! -f $COMMANDS_FILE ]]; then
+    echo "Error: $COMMANDS_FILE not found. Please create the file with jinja blocks."
     exit 1
 fi
 
-# Read the strings into an array
-mapfile -t STRINGS < "$STRINGS_FILE"
+# Variables to store extracted block names and contents
+inside_block=false
+block_name=""
+declare -a JINJA_BLOCKS
+declare -A BLOCK_CONTENTS
+current_content=""
 
-# Check if the strings file is empty
-if [[ ${#STRINGS[@]} -eq 0 ]]; then
-    echo "Error: $STRINGS_FILE is empty. Please add strings to the file."
+# Read the file line by line
+while IFS= read -r line; do
+    if [[ $line =~ ^\{\%\ block\ ([a-zA-Z0-9_]+)\ \%\}$ ]]; then
+        # Start a new block
+        block_name="${BASH_REMATCH[1]}"
+        JINJA_BLOCKS+=("$block_name")  # Store block name
+        current_content=""  # Reset content storage
+        inside_block=true
+    elif [[ $line =~ ^\{\%\ endblock\ \%\}$ ]]; then
+        # End of block
+        inside_block=false
+        BLOCK_CONTENTS["$block_name"]="$current_content"  # Save block content
+    elif $inside_block; then
+        # Append line to block content
+        current_content+="$line"$'\n'
+    fi
+done < "$COMMANDS_FILE"
+
+# Ensure at least one block was found
+if [[ ${#JINJA_BLOCKS[@]} -eq 0 ]]; then
+    echo "Error: No Jinja blocks found in $COMMANDS_FILE."
     exit 1
 fi
 
-# Check if last_index is empty
-#if [[ ${#LAST_INDEX_FILE[@]} -eq 0 ]]; then
-#	echo "0" > "$LAST_INDEX_FILE"
-#else
-  # Determine the last used index
-  if [[ -f $LAST_INDEX_FILE ]]; then
-      LAST_INDEX=$(<"$LAST_INDEX_FILE")
-  else
-      LAST_INDEX=-1
-  fi
-#fi
+# Determine the last used index
+if [[ -f $LAST_INDEX_FILE ]]; then
+    LAST_INDEX=$(<"$LAST_INDEX_FILE")
+else
+    LAST_INDEX=-1
+fi
 
 # Calculate the next index (wrap around if needed)
-NEXT_INDEX=$(( (LAST_INDEX + 1) % ${#STRINGS[@]} ))
+NEXT_INDEX=$(( (LAST_INDEX + 1) % ${#JINJA_BLOCKS[@]} ))
 
-# Echo the next string
-echo "${STRINGS[$NEXT_INDEX]}"
+# Get the block name
+NEXT_BLOCK="${JINJA_BLOCKS[$NEXT_INDEX]}"
+
+# Output only the content of the selected block
+echo "${BLOCK_CONTENTS[$NEXT_BLOCK]}"
 
 # Save the current index for the next execution
 echo "$NEXT_INDEX" > "$LAST_INDEX_FILE"
