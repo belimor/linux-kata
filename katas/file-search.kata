@@ -1,0 +1,41 @@
+find [/path/to/search/] [search_parameters]
+     go_there           find it
+
+# Find by file name:
+find /usr/share/ -name '*.jpg'
+find ./ -iname file.txt
+find ./ -name "f*"
+
+# Find by modification time
+find ./ -mmin -5 # up to five minutes
+find ./ -mmin 5 # exatcly 5 min ago
+find ./ -mmin +5 # before 5 min ago
+
+# modified time != changed time
+find ./ -cmin -5
+
+# Find by size
+find ./ -size +10G
+find ./ -size 8c #bytes
+find ./ -size 8k
+find ./ -size 8M
+find ./ -size 8G
+find ./ -size +256k
+find ./ -size -256k
+
+# AND
+find ./ -size -256k -name "f*"
+
+# OR
+find ./ -size -256k -o -name "f*"
+
+# NOT
+find ./ -not -name "f*"
+find ./ \! -name "f*"
+
+# Permissions
+find ./ -perm 664
+find ./ -perm -644   # find files with at least 664 permissions
+find ./ -perm /664   # find files with any of these permissions
+find ./ -perm u=rw,g=rw,o=r
+

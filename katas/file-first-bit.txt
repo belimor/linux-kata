@@ -1,0 +1,11 @@
+ls -l
+
+-rw-rw---
+
+- - regular file
+d - directory
+c - character device
+l - link
+s - socket file
+p - pipe
+b - block device

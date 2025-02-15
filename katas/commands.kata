@@ -1,0 +1,34 @@
+{% block command_001 %}
+######################
+# Check your system IP
+ip a
+{% endblock %}
+{% block command_002 %}
+######################
+ls --help
+{% endblock %}
+{% block command_003 %}
+######################
+journalctl --help
+{% endblock %}
+{% block command_004 %}
+######################
+man journalctl
+{% endblock %}
+{% block command_005 %}
+######################
+man man
+{% endblock %}
+{% block command_006 %}
+######################
+mandb
+{% endblock %}
+{% block command_007 %}
+######################
+apropos director
+{% endblock %}
+{% block command_008 %}
+######################
+apropos -s 1,8 director
+{% endblock %}
+

@@ -1,0 +1,26 @@
+echo "user1 123" > users.txt
+echo "user2 234" >> users.txt
+echo "user3 345" >> users.txt
+echo "user3 345" >> users.txt
+echo "user2 345" >> users.txt
+
+cat users.txt
+tac users.txt
+tail users.txt
+tail -n 2 users.txt
+head users.txt
+head -n 2 users.txt
+sed 's/user3/user03/g' users.txt  # preview
+sed -i s/user3/user03/g' users.txt  # inplcae replace
+cut -d ' ' -f 1 users.txt
+cut -d ' ' -f 1 users.txt > tmp_users.txt
+uniq tmp_users.txt
+sort tmp_users.txt
+sort tmp_users.txt | uniq
+
+diff file1 file2
+diff -c file1 file2
+diff -y file1 file2
+sdiff file1 file2
+
+

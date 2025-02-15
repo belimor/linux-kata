@@ -1,0 +1,92 @@
+ip a
+ls --help
+journalctl --help
+man journalctl
+man man
+mandb
+propos director
+propos -s 1,8 director
+# Autocompletion:
+systemc<TAB><TAB>
+# Subcommands autocompletion:
+#if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+#    . /etc/bash_completion
+#fi
+systemctl <TAB><TAB>
+ls li<TAB><TAB>
+ls -a
+ls -l
+ls -la
+pwd
+ls -lah ./
+cd /
+cd -
+touch tmp01.txt
+mkdir tmp1
+mkdir tmp2
+touch ./tmp2/tmp02.txt
+cp tmp01.txt ./tmp1/
+cp -r ./tmp1/ ./tmp2/
+# test with existing and non existing directory and files
+mv tmp01.txt tmp2/
+mv tmp2/tmp01.txt tmp2/tmp03.txt
+mv tmp2/ tmp3/
+rm tmp3/tmp03.txt
+rm -r tmp3/
+stat tmp1/tmp01.txt
+# Hard Link
+# ln <path_to_TARGET_file> <path_to_LINK_file>
+
+# Soft Link
+# ln -s <path_to_TARGET_file> <path_to_LINK_file>
+readlink <link_file_name>
+chgrp <group_name> <file>
+groups
+ohown <user_name> <file>
+chmod u+rwx <file>
+chmod g+rwx <file>
+chmod o+rwx <file>
+chmod u-rwx <file>
+chmod u=rwx <file>
+chmod o= <file>
+chmod 777 <file>
+
+# Set SUID permissions
+touch suidfile
+chmod 4664 suidfile
+ls -l suidfile
+chmod 4764 suidfile
+ls -la suidfile
+
+# Find suid files
+find . -perm /4000
+
+# Set SGID permissions
+touch guidfile
+chmod 2664 guidfile
+ls -la guidfile
+chmod 2674 guidfile
+ls -la guidfile
+
+# Find guid files
+find . -perm /2000
+
+# Set SUID and SGID
+touch suidguidfile
+chmod 6664 suidguidfile
+ls -l suidguidfile
+
+find . -perm /6000
+
+# Set sticky bit
+mkdir stickydir
+chmod +t stickydir
+ls -l stickydir
+chmod 1777 stickydir
+ls -l stickydir
+chmod 1666 stickydir
+ls -l stickydir
+
+
+
+
