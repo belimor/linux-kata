@@ -17,3 +17,5 @@ vm.swappiness = 60
 vim /etc/sysctl.d/swap-less.conf
 vm.swappiness=20 
 sysctl -p /etc/sysctl.d/swap-less.conf
+vim /etc/sysctl.conf
+
