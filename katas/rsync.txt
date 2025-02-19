@@ -1,0 +1,8 @@
+
+rsync -a ./Pictures/ user@10.0.0.2:/home/user/backup/Pictures/
+rsync -a user@10.0.0.2:/home/user/backup/Pictures/ ./Pictures/
+rsync -a ./Pictures/ /home/user/backup/Pictures/
+
+
+
+dd if=/dev/vda of=diskimage.raw bs=1M status=progress

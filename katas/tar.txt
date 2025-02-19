@@ -1,0 +1,62 @@
+
+tar --list --file archive.tar
+tar -tf archive.tar
+tar tf archive.tar
+
+tar --create --file archive.tar file1
+tar -cf archive.tar file1
+tar cf archive.tar file1
+
+tar --append --file archive.tar file2
+tar -rf archive.tar file2
+
+tar --create --file archive.tar folder1/
+tar -cf archive.tar folder1/
+tar cf archive.tar folder1/
+
+tar --extract --file archive.tar
+tar -xf ...
+tar xf ...
+tar --extract --file archive.tar --directory /tmp/
+tar -xf archive.tar -C /tmp/
+tar xf archive.tar -C /tmp/
+
+gzip file1
+bzip2 file1
+xz file1
+
+gunzip file1
+bunzip file1
+unxz file1
+
+gzip --decompress file1
+bzip --decompress file1
+xz --dceompress file1
+
+gzip --keep file1
+bzip2 --keep file1
+xz --keep file1
+
+gzip --list file1
+
+zip archive.zip file1
+zip -r archive.zip folder/
+uzip archive.zip
+
+tar --create --gzip --file archive.tar.gz file1
+tar --create --bzip --file archive.tar.bz2 file1
+tar --create --xz --file archive.tar.xz file1
+
+tar -czf archive.tar.gz file1
+tar -cjf archive.tar.bz2 file1
+tar -cJf archive.tar.xz file1
+
+tar --create --autocompress --file archive.tar.gz file1
+tar -caf archive.tar.xz file1
+
+tar --extract --file archive.tar.gz
+tar -xf archive.tar.gz
+tar xf archive.tar.gz
+
+
+

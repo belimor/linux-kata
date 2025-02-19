@@ -1,0 +1,23 @@
+
+man systemd.service
+
+
+
+### Example:
+
+[Unit]
+Description=Cleanup old Foo data
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/foo-cleanup
+
+[Install]
+WantedBy=multi-user.target
+
+
+ls /lib/systemd/system/
+
+systemctl daemon-reload
+
+man systemd.<TAB><TAB>

@@ -1,0 +1,17 @@
+
+df -h
+free -h
+uptime
+
+# load average: 1m, 5m, 15m
+
+lscpu
+lspci
+
+unmount
+xfs_repair -v /dev/vdb1
+
+fsck.ext4 -v -f -p /dev/vdb2
+
+systemctl list-dependencies
+

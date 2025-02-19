@@ -1,0 +1,44 @@
+
+sysstemctl cat ssh.service
+
+systemctl edit --full ssh.service
+
+systemctl status ssh.service
+
+systemctl stop ssh.service
+
+systemctl start ssh.service
+
+systemctl reload ssh.service
+
+systemctl disable ssh.service
+
+#systemctl disable --now ssh.service
+
+systemctl is-enabled ssh.service
+
+systemctl enable ssh.service
+
+systemctl enable --now ssh.service
+
+systemctl restart ssh.service
+
+systemctl reload-or-restart ssh.service
+
+systemctl mask atd.service #### diactivate disable/enable actions for the service
+systemctl unmask atd.service
+
+systemctl list-units --type service --all
+
+
+
+
+
+
+
+
+
+
+
+
+
