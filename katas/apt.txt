@@ -1,0 +1,42 @@
+
+apt update
+apt upgrade
+
+apt install nginx
+dpkg --listfiles nginx
+dpkg --listfiles nginx-common
+dpkg --search /usr/sbin/nginx
+apt show libnginx-mod-strem
+apt search nginx
+apt search --names-only nginx
+apt search nginx module image
+apt remove nginx
+apt autoremove nginx
+
+# old ubunut
+/etc/apt/source.list
+
+# new ubuntu
+/etc/apt/source.list.d/ubuntu.sources
+
+curl "url" name.key
+gpg --dearmor name.key
+mv name.key.gpg /etc/apt/keyrings/
+
+vim /etc/apt/source.list.d/example.list
+# deb [signed-by=/etc/apt/keyrings/name.key.gpg] https://... noble stable
+
+add-apt-repository ppa:john/mylatestapp
+add-apt-repository ppa:graphics-drivers/ppa
+add-apt-repository --list
+add-apt-repository --remove ppa:graphics-drivers/ppa
+
+
+
+
+
+
+
+
+
+

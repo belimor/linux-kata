@@ -1,0 +1,8 @@
+
+grep "text to search" /path/to/search/insede_file.txt
+grep -i "ignore case" /path/file.txt
+grep -r "search all files" /path/
+grep -ri --color "search and highlight" /path/
+grep -v "search_all_bu_this_word" /filename
+grep -w "exact_word" /filename.txt
+grep -o "disaply only this word but not the whole line" /filename.txt

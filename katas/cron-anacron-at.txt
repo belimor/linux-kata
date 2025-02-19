@@ -1,0 +1,62 @@
+# cron - 
+# anacron - minimum once a day
+# at - run once at time
+
+cat /etc/crontab
+# * - all values
+# , - multiple values 12,13,14
+# - - range 12-15
+# / - specify step */4
+
+crontab -e
+crontab -l
+crontab -e -u user_name
+crontab -r
+
+ls -l /etc/cron.
+cron.daily/   
+cron.hourly/  
+cron.monthly/ 
+cron.weekly/ 
+
+touch shellscript
+cp shellscript /etc/cron.daily/
+chmox +rx /etc/cron.daily/shellscript
+
+apt install anacron
+vim /etc/anacron
+3 10 test job /usr/bin/touch /tmp/tmp.txt ### onece every 3 days with delay of 10 minutes
+7 10 ..... # once every 7 days
+@monthly
+
+anacront -T
+
+apt install at
+at 02:00
+/usr/bin/touch /tmp/tmp.txt
+ctrl + d
+
+at 'August 20 2025'
+...
+
+at '2:30 August 20 2025'
+...
+
+at 'now + 30 minutes'
+...
+
+at 'now + 3 hours'
+at 'now + 3 days'
+at 'now + 3 weeks'
+at 'now + 3 months'
+
+atq
+
+at -c 1
+
+atrm 1
+
+
+
+
+
