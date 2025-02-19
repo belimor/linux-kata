@@ -1,0 +1,22 @@
+apt install lvm2
+
+# PV - physical volums
+# VG - volume group
+# LV - logical volume
+# PE - physical extend
+
+lvmdiskscan
+pvcreate /dev/sdc /dev/sdd
+pvs
+vgcreate [name_of_the_group] [name_of_the_pvs_to_use]
+vgextend [name_of_the_group] [pvs] 
+vgs
+pvremove /dev/sde
+lvcreate --size 2G --name partition1 my_volume
+lvs
+lvresize --extents 100%VG my_volume/partition1
+lvresize --size 2G my_volume/partition1
+lvresize --resizefs --size 3G my_volume/partition1
+
+/dev/volume_group/volume_name
+lvdisplay
