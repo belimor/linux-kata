@@ -1,0 +1,11 @@
+systemctl reboot
+systemctl reboot --force
+systemctl poweroff --force
+systemctl reboot --force --force
+
+shutdown 02:00
+shutdown +15
+shutdown -r 02:00
+shutdown -r +15 'Scheduled restart'
+
+

@@ -1,0 +1,64 @@
+^ - the line begins with:
+
+grep '^#' /etc/login.defs      # show commented lines
+grep -v '^#' /etc/login.defs   # don't show commented lines
+grep '^PASS' /etc/login.defs
+
+$ - the line ends with:
+
+grep '7$' /etc/login.defs   # show lines ends on 7
+grep -w '7$' /etc/login.defs   # show lines ends on 7
+grep 'mail$' /etc/login.defs
+
+. - match ONE character
+
+grep -r 'c.t' /etc/
+grep -wr 'c.t' /etc/
+grep '\.' /etc/login.defs # search for dot
+
+* - wild card
+
+grep -r 'let*' /etc/login.defs
+grep -r '/.*/' /etc/login.defs  # begins with /; has 0 or more character in between; ends with /
+
+\+ - match the previous element 1 or more times
+
+grep -r '0\+' /etc/
+
+Extended regular expressions
+
++ - match the previous element 1 or more times
+
+grep -Er '0+' /etc/
+egrep -r '0+' /etc/
+
+{min,max} or {exact} previous element can exists this many times
+
+egrep -r '0{3,}' /etc # match 3 zeros
+egrep -r '10{,3}' /etc # match 1 10 100 1000
+egrep -r '0{0}' /etc  # match 000
+
+? - makes the previous element optional
+
+egrep -r 'disabled?' /etc/   # match disable or disabled
+egrep -wr 'disabled?' /etc/   # match disable or disabled
+
+| - or operator
+
+egrep -r 'enabled|disabled' /etc/
+
+[] [a-z] [0-9] [abz954] - range
+
+egrep -e 'c[au]t' /etc
+
+Example:
+
+egrep -r '/dev/[a-z]*[0-9]?' /etc/
+egrep -r '/dev/([a-z]*[0-9]?)*' /etc/
+egrep -r '/dev/(([a-z]*[0-9]?)*[0-9]?)*' /etc/
+
+[^] - negated range or sets
+
+egrep -r 'https[^:]' /etc/   # return all https execpt https:
+egrep -r 'http[^s:]' /etc/   # return all http execpt https:
+

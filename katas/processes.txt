@@ -1,0 +1,55 @@
+ps -a
+ps
+ps aux
+top
+ps 1
+ps u 1
+ps -U jeremy
+ps u -U jeremy
+pgrep -a syslog
+
+nice -n [NICE VALUE] [command]
+ps -l ### display nice collumn
+ps lax
+ps fax
+ps faux
+
+nice -n 12 bash
+renice [NEW NICE VALUE] [PID]
+
+kill -l
+kill -SIGHUP [PID]
+kill -SIGKILL [PID]
+kill -KILL [PID]
+kill -9 [PID]
+
+pgrep -a bash
+pkill -KILL bash
+
+sleep 1800
+ctrl + z
+bg
+fg
+sleep 1800 &
+jobs
+fg 1
+
+pgrep -a bash
+lsof -p [PID]
+lsof /path/to/the/file
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
