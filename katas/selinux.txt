@@ -1,0 +1,18 @@
+# check SELinux permissions:
+
+# file
+ls -Z /file/name
+#unconfined_u:object_r:user_home_t:s0
+#user         role     type        level
+
+# process
+ps axZ
+
+# user
+id -Z
+
+semanage login -l
+semanage user -l
+
+getenforce
+

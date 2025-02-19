@@ -1,0 +1,14 @@
+# network file system
+
+# nfs server
+apt install nfs-kernel-server
+vim /etc/exports
+# /svr/homes ...
+man exports
+exportfs -r
+exportfs -v
+
+# nfs clien
+apt install nfs-common
+mount IP:/path/to/remote/directory/ /local/mnt/path/
+
