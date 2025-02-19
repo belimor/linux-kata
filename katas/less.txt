@@ -1,0 +1,4 @@
+
+less file_name.txt
+more file_name.txt
+vim file_name.txt

@@ -1,0 +1,27 @@
+
+grep -r "ssh" /var/log/
+less /var/log/auth.log
+tail -f /var/log/auth.log
+
+journalctl /usr/bin/sudo
+journalctl -u ssh.service
+journalctl
+# > jump to the end
+# 
+journalctl -e
+journalctl -f
+
+journalctl -p err
+journalctl -p <TAB><TAB>
+journalctl -p infor -g '^b'
+journalctl -S 02:00
+journalctl -S 02:00 -U 04:00
+journalctl -S '2025-01-01 00:00:00'
+journalctl -b 0
+journalctl -b 1
+
+last
+lastlog
+
+
+

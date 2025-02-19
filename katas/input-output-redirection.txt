@@ -1,0 +1,35 @@
+
+sort file1 > sorted_file
+
+date > file1
+date >> file2
+date >> file3
+
+date 1> file1
+
+stdin <
+stdout 1>
+stderr 2>
+
+sort <file1
+
+grep -r '^The' /etc/ 2>/dev/null
+grep -r '^The' /etc/ > all_output 2>&1
+grep -r '^The' /etc/ 1>all_output 2>&1
+
+
+grep -r '^The' /etc/ 2>&1 1>all_output #output errors on the screen not to the file
+
+sendmail user@example.com < email.txt
+
+sort <<EOF
+1
+2
+3
+4
+EOF
+
+bc <<<1+2+3
+
+grep -v '^#' /etc/login.defs | sort | column -t
+
