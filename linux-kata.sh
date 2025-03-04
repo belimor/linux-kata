@@ -9,7 +9,7 @@ show_help() {
     echo "  enable            		Enable Linux-Kata."
     echo "  disable           		Disable Linux Kata."
     echo "  list              		List available katas."
-    echo "  reset-index			Restart kata"
+    echo "  reset-index			Restart kata."
     echo "  select-kata <kata-name>	Change kata to the specified kata-name."
     echo "  (no arguments)    		Disaply next kata block."
     exit 0
@@ -115,6 +115,7 @@ reset_index() {
 
     # Reset current index for the next execution
     echo "-1" > "$LAST_INDEX_FILE"
+    echo "Kata has been restarted..."
 }
 
 case "$1" in
