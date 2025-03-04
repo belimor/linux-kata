@@ -1,0 +1,298 @@
+{% block command_001 %}
+###################### 1 ###
+# Check kubernetes cluster nodes:
+kubectl get nodes
+{% endblock %}
+
+{% block command_002 %}
+###################### 2 ###
+# Create nginx deployment:
+kubectl create deployment nginx --image=nginx
+{% endblock %}
+
+{% block command_003 %}
+###################### 3 ###
+# Lists all deployments in the current namespace:
+kubectl get deployments
+{% endblock %}
+
+{% block command_004 %}
+###################### 4 ###
+# Displays detailed information about the nginx deployment:
+kubectl describe deployment nginx
+{% endblock %}
+
+{% block command_005 %}
+###################### 5 ###
+# Shows recent cluster events:
+kubectl get events
+{% endblock %}
+
+{% block command_006 %}
+###################### 6 ###
+# Retrieves the nginx deployment in YAML format:
+kubectl get deployment nginx -o yaml
+{% endblock %}
+
+{% block command_007 %}
+###################### 7 ###
+# Saves the nginx deployment YAML to first.yaml:
+kubectl get deployment nginx -o yaml > first.yaml
+{% endblock %}
+
+{% block command_008 %}
+###################### 8 ###
+# Opens first.yaml for editing in Vim:
+vim first.yaml
+{% endblock %}
+
+{% block command_009 %}
+###################### 9 ###
+# Deletes the nginx deployment:
+kubectl delete deployment nginx
+{% endblock %}
+
+{% block command_010 %}
+###################### 10 ###
+# Creates a deployment from first.yaml:
+kubectl create -f first.yaml
+{% endblock %}
+
+{% block command_011 %}
+###################### 11 ###
+# Saves the nginx deployment YAML to second.yaml:
+kubectl get deployment nginx -o yaml > second.yaml
+{% endblock %}
+
+{% block command_012 %}
+###################### 12 ###
+# Compares first.yaml and second.yaml for differences:
+diff first.yaml second.yaml
+{% endblock %}
+
+{% block command_013 %}
+###################### 13 ###
+# Generates a YAML definition for the two deployment without applying it:
+kubectl create deployment two --image=nginx --dry-run=client -o yaml
+{% endblock %}
+
+{% block command_014 %}
+###################### 14 ###
+# Lists all deployments in the current namespace:
+kubectl get deployment
+{% endblock %}
+
+{% block command_015 %}
+###################### 15 ###
+# Retrieves the nginx deployment in YAML format:
+kubectl get deployments nginx -o yaml
+{% endblock %}
+
+{% block command_016 %}
+###################### 16 ###
+# Retrieves the nginx deployment in JSON format:
+kubectl get deployment nginx -o json
+{% endblock %}
+
+{% block command_017 %}
+###################### 17 ###
+# Displays help information for the kubectl expose command:
+kubectl expose -h
+{% endblock %}
+
+{% block command_018 %}
+###################### 18 ###
+# Creates a service to expose the nginx deployment:
+kubectl expose deployment/nginx
+{% endblock %}
+
+{% block command_019 %}
+###################### 19 ###
+#
+vim first.yaml
+# ....
+# spec:
+#   containers:
+#   - image: nginx
+#     imagePullPolicy: Always
+#     name: nginx
+#     ports:                  #--Add these
+#     - containerPort: 80     #--three
+#       protocol: TCP         #--lines
+#     resources: {}
+# ....
+{% endblock %}
+
+{% block command_020 %}
+###################### 20 ###
+# Replaces the existing deployment with first.yaml, forcing a restart:
+kubectl replace -f first.yaml --force
+{% endblock %}
+
+{% block command_021 %}
+###################### 21 ###
+# Lists all deployments and pods in the current namespace:
+kubectl get deploy,pod
+{% endblock %}
+
+{% block command_022 %}
+###################### 22 ###
+# Creates a service to expose the nginx deployment:
+kubectl expose deployment/nginx
+{% endblock %}
+
+{% block command_023 %}
+###################### 23 ###
+# Retrieves details of the nginx service:
+kubectl get svc nginx
+{% endblock %}
+
+{% block command_024 %}
+###################### 24 ###
+# Shows the endpoints associated with the nginx service:
+kubectl get ep nginx
+{% endblock %}
+
+{% block command_025 %}
+###################### 25 ###
+# Displays the node where the nginx pod is running:
+kubectl describe pod nginx-<ID> | grep Node
+{% endblock %}
+
+{% block command_026 %}
+###################### 26 ###
+# Captures network packets on the cilium_vxlan interface:
+sudo tcpdump -i cilium_vxlan
+{% endblock %}
+
+{% block command_027 %}
+###################### 27 ###
+# Sends an HTTP request to the specified cluster IP on port 80:
+curl <cluster_ip>:80
+{% endblock %}
+
+{% block command_028 %}
+###################### 28 ###
+# Retrieves details of the nginx deployment:
+kubectl get deployment nginx
+{% endblock %}
+
+{% block command_029 %}
+###################### 29 ###
+# Scales the nginx deployment to three replicas:
+kubectl scale deployment nginx --replicas=3
+{% endblock %}
+
+{% block command_030 %}
+###################### 30 ###
+# Verifies the nginx deployment scaling:
+kubectl get deployment nginx
+{% endblock %}
+
+{% block command_031 %}
+###################### 31 ###
+# Checks if new endpoints are assigned to the nginx service:
+kubectl get ep nginx
+{% endblock %}
+
+{% block command_032 %}
+###################### 32 ###
+# Lists pods with additional node and IP details:
+kubectl get pod -o wide
+{% endblock %}
+
+{% block command_033 %}
+###################### 33 ###
+# Deletes a specific nginx pod:
+kubectl delete pod nginx-<ID>
+{% endblock %}
+
+{% block command_034 %}
+###################### 34 ###
+# Short form of kubectl get pods, listing all pods:
+kubectl get po
+{% endblock %}
+
+{% block command_035 %}
+###################### 35 ###
+# Checks endpoints for the nginx service after pod deletion:
+kubectl get ep nginx
+{% endblock %}
+
+{% block command_036 %}
+###################### 36 ###
+# Sends an HTTP request to the pod/service with IP:
+curl 10.100.61.122:80
+{% endblock %}
+
+{% block command_037 %}
+###################### 37 ###
+# Lists all pods in the current namespace:
+kubectl get po
+
+{% block command_038 %}
+###################### 38 ###
+# Displays Kubernetes-related environment variables in the nginx pod:
+kubectl exec nginx-<ID> -- printenv | grep KUBERNETES
+
+{% block command_039 %}
+###################### 39 ###
+# Lists all services in the current namespace:
+kubectl get svc
+
+{% block command_040 %}
+###################### 40 ###
+# Deletes the nginx service:
+kubectl delete svc nginx
+
+{% block command_041 %}
+###################### 41 ###
+# Exposes nginx as a LoadBalancer service:
+kubectl expose deployment nginx --type=LoadBalancer
+
+{% block command_042 %}
+###################### 42 ###
+# Verifies the created or updated services:
+kubectl get svc
+
+{% block command_043 %}
+###################### 43 ###
+# Retrieves the public IP address of the machine:
+curl ifconfig.io
+
+{% block command_044 %}
+###################### 44 ###
+# Opens a browser to access the specified IP and port (commented-out command):
+# openbrowser http://<IP>:<LP_Port>
+
+{% block command_045 %}
+###################### 45 ###
+# Scales down the nginx deployment to zero replicas:
+kubectl scale deployment nginx --replicas=0
+
+{% block command_046 %}
+###################### 46 ###
+# Checks if all nginx pods have been terminated:
+kubectl get po
+
+{% block command_047 %}
+###################### 47 ###
+# Scales up the nginx deployment to two replicas:
+kubectl scale deployment nginx --replicas=2
+
+{% block command_048 %}
+###################### 48 ###
+# Verifies the creation of new nginx pods:
+kubectl get po
+
+{% block command_049 %}
+###################### 49 ###
+# Deletes the nginx deployment:
+kubectl delete deployments nginx
+
+{% block command_050 %}
+###################### 50 ###
+# Deletes the nginx service:
+kubectl delete svc nginx
+
+
