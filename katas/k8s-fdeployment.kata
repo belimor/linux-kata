@@ -225,7 +225,7 @@ kubectl get ep nginx
 {% block command_036 %}
 ###################### 36 ###
 # Sends an HTTP request to the pod/service with IP:
-curl 10.100.61.122:80
+curl <ENDPOINT_IP>:80
 {% endblock %}
 
 {% block command_037 %}
@@ -255,7 +255,7 @@ kubectl delete svc nginx
 {% block command_041 %}
 ###################### 41 ###
 # Exposes nginx as a LoadBalancer service:
-kubectl expose deployment nginx --type=LoadBalancer
+kubectl expose deployment nginx --type=NodePort
 {% endblock %}
 
 {% block command_042 %}
@@ -273,7 +273,7 @@ curl ifconfig.io
 {% block command_044 %}
 ###################### 44 ###
 # Opens a browser to access the specified IP and port (commented-out command):
-# openbrowser http://<IP>:<LP_Port>
+# openbrowser http://<KUBERNETES_SERVER_IP>:<NodePort>
 {% endblock %}
 
 {% block command_045 %}
